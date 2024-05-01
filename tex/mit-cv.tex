@@ -1,0 +1,339 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{latexsym}
+\usepackage{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage[italian]{babel}
+\usepackage{tabularx}
+\usepackage{multicol}
+\usepackage{makecell}
+\usepackage[top=2cm, bottom=2cm, left=1.5cm, right=1.5cm]{geometry}
+\usepackage{tikz}
+\usepackage{ifthen}
+\usepackage{catchfile}
+\usepackage{enumitem}
+
+\input{glyphtounicode}
+\usetikzlibrary{calc}
+
+\newcommand{\getenv}[2][]{%
+  \CatchFileEdef{\temp}{"|kpsewhich --var-value #2"}{\endlinechar=-1}%
+  \if\relax\detokenize{#1}\relax\temp\else\let#1\temp\fi}
+
+\getenv[\mode]{MODE}
+
+% Print mode
+\typeout{Mode: \mode}
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+%\usepackage[default]{sourcesanspro}
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+%\pagestyle{fancy}
+%\fancyhf{} % clear all header and footer fields
+%\fancyfoot{}
+
+\pagenumbering{gobble}
+
+\setlength{\footskip}{4pt}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\renewcommand{\cellalign}{tl}
+\renewcommand{\theadalign}{tl}
+
+%\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-4pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+%\newcommand{\resumeItem}[2]{
+\newcommand{\resumeItem}[1]{
+  \item{ \small
+    {#1 }
+  }
+}
+
+\newcommand{\resumeSubItem}[1]{
+    \begin{itemize}
+    \item{ 
+      {\small #1 }
+    }
+    \end{itemize}
+  }
+
+\newcommand{\resumeSubheading}[4]{
+% \vspace{-1pt}
+    \item%
+    \begin{tabular*}{.95\textwidth}[t]{p{.65\textwidth}@{\extracolsep{\fill}}r}
+      \textbf{#1} & {\small#4} \\
+      \textit{#3} & \textit{\small #2}
+    \end{tabular*}
+}
+
+\newcommand{\resumeSubComment}[1]{
+    \item{%
+    \begin{tabular*}{.95\textwidth}[t]{p{.65\textwidth}@{\extracolsep{\fill}}r}
+        \multicolumn{2}{p{.9\textwidth}}{{\small #1}}
+    \end{tabular*}%
+    }%
+}
+
+\newcommand{\resumeSubSubheading}[3]{
+    \item{%
+    \begin{tabular*}{.9\textwidth}[t]{p{.65\textwidth}@{\extracolsep{\fill}}r}
+      \textit{\textbf{\small #1}} {\small (#2)} & \\
+      \multicolumn{2}{p{.9\textwidth}}{{\small #3}}
+    \end{tabular*}
+    }%
+}
+
+\newcommand{\resumeProjectHeading}[3]{
+    \item%
+    \begin{tabular*}{.95\textwidth}[t]{p{.7\textwidth}@{\extracolsep{\fill}}r}
+        \textbf{#1} & {\small#3} \\
+        \multicolumn{2}{p{.9\textwidth}}{\parbox{.9\textwidth}{{\vspace{2pt}\small #2}}}
+      \end{tabular*}
+}
+
+\newcommand{\resumePublicationHeading}[4]{
+% \vspace{-1pt}
+    \item%
+    \begin{tabular*}{.95\textwidth}[t]{p{.85\textwidth}@{\extracolsep{\fill}}r}
+      \textbf{#1} & {\small#3} \\
+      \textit{#2} & \\
+      {\footnotesize #4} &
+    \end{tabular*}
+}
+
+\newcommand{\resumeLanguageEntry}[2]{
+    \item%
+    \begin{tabular*}{.95\textwidth}[t]{p{.6\textwidth}@{\extracolsep{\fill}}r}
+    \textbf{#1} & {#2}
+    \end{tabular*}
+}
+%\newcommand{\resumeSubItem}[2]{
+%    \resumeItem{#1}{#2}\vspace{-4pt}
+%}
+%\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\renewcommand{\labelitemii}{$\circ$}
+\setlist[itemize]{itemsep=.2mm}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=*]} %
+\newcommand{\resumeItemListEnd}{\end{itemize}}
+
+% --------- Start of resume --------
+
+\begin{document}
+
+\begin{center}
+    \resizebox{0.4\linewidth}{!}{\textbf{Jotaro Kujo}} \\ \vspace{5pt}
+    
+    \ifthenelse{\equal{\mode}{bando} \OR \equal{\mode}{standard} \OR \equal{\mode}{completo}}{
+        \small +81 124 523 21152 $|$ \href{mailto:jotaro@kujo.com}{\underline{jotaro@kujo.com}} $| \:$
+    }
+    
+    \href{https://jotaro.jo.jo}{\underline{jotaro.jo.jo}} $|$
+    \href{https://github.com/jotaro}{\underline{github.com/jotaro}}
+    \ifthenelse{\equal{\mode}{bando} \OR \equal{\mode}{standard} \OR \equal{\mode}{completo}}{
+        $| \:$ \href{https://www.youtube.com/watch?v=i-L0Gs2whvc}{\underline{on LinkedIn}}
+    }{}
+\end{center}
+
+\section{Professional Profile}
+
+Here you can write a brief introduction about yourself, your career goals, and your professional achievements. You can also include a brief summary of your skills and experience.
+
+\section{Research Interests and Knowledge Areas}
+
+\begin{minipage}{.5\textwidth}%
+    \begin{itemize}[noitemsep]
+        \item In this bullet list you
+        \item can list your research
+        \item interests and knowledge areas
+        \item in a concise way
+    \end{itemize}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}%
+    \begin{itemize}[noitemsep]
+        \item Do not forget to
+        \item include the most
+        \item relevant topics
+        \item for the position
+    \end{itemize}
+\end{minipage}
+
+\section{Experience}
+\resumeSubHeadingListStart
+
+\resumeSubheading{Position}{Location}{Where}{Start --- End}
+\resumeSubHeadingListStart
+\resumeSubSubheading{Researcher}{Nov 2023 --- Oct 2024}{}\vspace{-11pt}
+\resumeSubSubheading{Junior Researcher}{Nov 2022 --- Oct 2023}{}\vspace{-11pt}
+\resumeSubSubheading{Intern}{Mar 2022 --- Jul 2022}{You can add a brief comment here about what you did during this period}
+\resumeSubHeadingListEnd
+
+\ifthenelse{\equal{\mode}{completo}}{
+    \resumeSubheading{Another Position}{Location}{Where}{Start --- End}
+    \resumeSubHeadingListStart
+    \resumeSubComment{You may want some positions to be hidden in the main CV, but still available in the full version.}
+    \resumeSubHeadingListEnd
+}{}
+\resumeSubHeadingListEnd
+
+\section{Education}
+\resumeSubHeadingListStart
+
+\resumeSubheading{Master's Degree in Computer Science}{Trento (TN)}{University of Trento}{Sep 2020 --- Oct 2022}
+\resumeItemListStart
+\resumeItem{You can list some of the most relevant courses you took during your studies}
+\resumeItem{Mark, thesis title, and other relevant information}
+\resumeItemListEnd
+
+\ifthenelse{\equal{\mode}{completo}}{
+    \resumeSubheading{Secondary School Diploma}{Where}{School}{Sep 2012 --- Lug 2017}
+}{}
+\resumeSubHeadingListEnd
+
+\section{Languages}
+\resumeSubHeadingListStart
+\resumeLanguageEntry{Italian}{\textbf{Mother tongue}}
+\resumeLanguageEntry{English}{Cambridge Level 3 Certificate --- \textbf{C2}}
+\resumeLanguageEntry{French}{\textbf{A2}}
+\resumeLanguageEntry{Spanish}{\textbf{A2}}
+\resumeSubHeadingListEnd
+
+%\clearpage
+
+\section{Works}
+\resumeSubHeadingListStart
+\resumePublicationHeading{Publication Title, That is Very Long and Descriptive}{Conference Name}{Month Year}{Keywords: keyword1, keyword2, keyword3}
+\resumePublicationHeading{Another Publication Title}{Journal Name}{Month Year}{Keywords: keyword1, keyword2, keyword3}
+\resumeSubHeadingListEnd
+
+
+\ifthenelse{\equal{\mode}{completo}}{
+    \section{Seminars and Presentations}
+    \resumeSubHeadingListStart
+    \resumePublicationHeading{Another Publication That May Be Minor}{Conference Name}{Month Year}{Keywords: keyword1, keyword2, keyword3}
+    \resumeSubHeadingListEnd
+}{}
+
+\ifthenelse{\equal{\mode}{completo}}{
+    \section{Projects \footnotesize (full list available in portfolio and on Github)}
+}{
+    \section{Projects}
+}
+\resumeSubHeadingListStart
+\resumeProjectHeading{Project Title}{Description of the project}{Month Year}
+\resumeProjectHeading{Another Project Titlet}{Description of the project, that may contain \\ multiple lines of text and be quite long}{Month Year}
+\ifthenelse{\equal{\mode}{completo}}{
+    \resumeProjectHeading{Another Project Title}{Description of the project}{Month Year}
+    \resumeItemListStart
+    \resumeItem{Just like the other sections, you can hide some projects in the main CV, but still make them available in the full version}
+    \resumeItem{You can also add one or more lines of text to describe the project}
+    \resumeSubItem{And you can also add sub-items to the project description}
+    \resumeItemListEnd
+}{}
+\resumeSubHeadingListEnd
+
+% --------- Technical skills --------
+
+\section{Technical Skills}
+\begin{minipage}{.5\textwidth}%
+    
+    \textbf{Network and system administration} \\
+    { \small
+    Linux network stack, Bash scripting and automation
+    }
+    \medskip
+    
+    \textbf{Virtualization and cloud} \\
+    {\small
+    Docker, Kubernetes \\
+    Azure, Google Cloud Platform, AWS \\
+    OpenStack, Hyper-V, VMWare, Proxmox, KVM 
+    }
+    \medskip
+    
+    \textbf{Cyber Security} \\
+    {\small
+    Metasploit, Nmap, Wireshark, OpenVAS, Nessus \\
+    Fortinet/FortiOS, Juniper, Cisco platforms 
+    }
+    
+\end{minipage}%
+\begin{minipage}{.5\textwidth}%
+    \textbf{Development} \\
+    {\small
+    Python: NetworkX, OpenCV, \\
+    Numpy, TensorFlow, Keras \\
+    HTML, CSS, JavaScript \\
+    Python-, Java-, PHP- and JS-based frameworks
+    }
+    \medskip
+    
+    \textbf{Other} \\
+    { \small
+    LaTeX typesetting \\
+    SQL (Postgres, MySQL) \\
+    Rust, Lua, Go, R, C, C++
+    }
+\end{minipage}
+
+% --------- Other skills --------
+\section{Other Skills}
+
+\small{
+    \textbf{Multimedia skills} \\
+    Photography, photo editing, graphics design, video production \\
+    \medskip
+    \textbf{Miscellaneous} \\
+    Event management and organization, computer building, systems management and maintainance
+}
+
+\ifthenelse{\equal{\mode}{bando}}{
+    \section{Final Remarks}
+     { \footnotesize \it
+      Autorizzo il trattamento dei miei dati personali presenti nel CV ai sensi dell'art. 13 d. lgs. 30 giugno 2003 n. 196 - “Codice in materia di protezione dei dati personali” e dell'art. 13 GDPR 679/16 - “Regolamento europeo sulla protezione dei dati personali”.\\
+      \medskip
+      Location, \today
+     }
+}{\ifthenelse{\equal{\mode}{epurato}}{
+        \section{Final Remarks}
+         { \footnotesize \it
+          Acconsento alla pubblicazione del mio CV in ottemperanza alle disposizioni di legge dettate in materia di trasparenza
+          (D.Lgs. 33/2013).\\
+          \medskip
+          Location, \today
+         }
+    }}{}
+
+\end{document}

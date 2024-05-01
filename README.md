@@ -1,26 +1,29 @@
-A single-page, one-column resume for software developers. It uses the base latex templates and fonts to provide ease of use and installation when trying to update the resume. The different sections are clearly documented and custom commands are used to provide consistent formatting. The three main sections in the resume are education, experience, and projects.
+# LaTeX Resume Template
 
-### Motivation
+This is a resume template originally created by [Sourabh Bajaj](https://github.com/sb2nov/resume) and heavily modified by me.
 
-I created this template as managing a resume on Google Docs was hard and changing any formatting was too difficult since it had to be applied in multiple places.
+Started off as a software developer resume template, I slightly modified it to be both more general and more applicable to a researcher.
 
-Most currently available templates either focus on two columns, or are multiple pages long that didn't work well for career fairs or online applications.
+## Building
 
-### Quick start
+Building the resume requires any LaTeX distribution. Within the `tex` folder you will find a Bash scripts
+that automates the building. You will notice that the script builds the resume four times. This is because
+the following four versions of the resume are built:
 
-Get started quickly using [Overleaf](https://www.overleaf.com/latex/templates/software-engineer-resume/gqxmqsvsbdjf) template.
+- `standard`: The standard resume, all-purpose, to be used for most applications.
+- `completo` ("complete" in Italian): A more detailed resume, with more information about each section.
+  Sometimes you may want to keep your main resume light but have a more detailed version to send to
+  potential employers or to keep as a "I did this" document.
+- `bando` ("call" in Italian): a version of the CV that automatically includes the disclaimer
+  authorizing the processing of personal data. This is required in Italy, but you may want to include
+  it in your resume if you are applying to Italian companies.
+- `epurato` ("purified" in Italian): a version of the CV that removes personal data such as the
+  website, phone number, and email address. This is useful if you want to share your resume online
+  but do not want to share your personal information.
 
-### Build using Docker
+You may dig into the `mit-cv.tex` file and tinker with the `ifthen` statements to include or exclude
+sections as you see fit.
 
-```sh
-docker build -t latex .
-docker run --rm -i -v "$PWD":/data latex pdflatex sourabh_bajaj_resume.tex
-```
+## License
 
-### Preview
-
-![Resume Screenshot](/resume_preview.png)
-
-### License
-
-Format is MIT but all the data is owned by Sourabh Bajaj.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
