@@ -24,6 +24,10 @@ the following four versions of the resume are built:
 You may dig into the `mit-cv.tex` file and tinker with the `ifthen` statements to include or exclude
 sections as you see fit.
 
+## Preview
+
+![Resume Screenshot](/resume_preview.png)
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
