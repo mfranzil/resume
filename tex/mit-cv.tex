@@ -15,11 +15,12 @@
 \usepackage{tabularx}
 \usepackage{multicol}
 \usepackage{makecell}
-\usepackage[top=2cm, bottom=2cm, left=1.5cm, right=1.5cm]{geometry}
+\usepackage[top=1.7cm, bottom=1.7cm, left=1.4cm, right=1.4cm]{geometry}
 \usepackage{tikz}
 \usepackage{ifthen}
 \usepackage{catchfile}
 \usepackage{enumitem}
+\usepackage{ragged2e}
 
 \input{glyphtounicode}
 \usetikzlibrary{calc}
@@ -70,6 +71,9 @@
 % Ensure that generate pdf is machine readable/ATS parsable
 \pdfgentounicode=1
 
+\newcolumntype{L}[1]{>{\hsize=#1\hsize\RaggedRight} X}
+\newcolumntype{T}{@{\extracolsep{\fill}}r}
+
 %-------------------------
 % Custom commands
 %\newcommand{\resumeItem}[2]{
@@ -81,7 +85,7 @@
 
 \newcommand{\resumeSubItem}[1]{
     \begin{itemize}
-    \item{ 
+    \item{
       {\small #1 }
     }
     \end{itemize}
@@ -90,51 +94,52 @@
 \newcommand{\resumeSubheading}[4]{
 % \vspace{-1pt}
     \item%
-    \begin{tabular*}{.95\textwidth}[t]{p{.65\textwidth}@{\extracolsep{\fill}}r}
+    \begin{tabularx}{.95\textwidth}[t]{L{.75}T}
+    %\begin{tabularx*}{.95\textwidth}[t]{p{.75\textwidth}@{\extracolsep{\fill}}r}
       \textbf{#1} & {\small#4} \\
       \textit{#3} & \textit{\small #2}
-    \end{tabular*}
+    \end{tabularx}
 }
 
 \newcommand{\resumeSubComment}[1]{
     \item{%
-    \begin{tabular*}{.95\textwidth}[t]{p{.65\textwidth}@{\extracolsep{\fill}}r}
+    \begin{tabularx}{.95\textwidth}[t]{L{.75}T}
         \multicolumn{2}{p{.9\textwidth}}{{\small #1}}
-    \end{tabular*}%
+    \end{tabularx}%
     }%
 }
 
 \newcommand{\resumeSubSubheading}[3]{
+    \vspace{-0.3em}
     \item{%
-    \begin{tabular*}{.9\textwidth}[t]{p{.65\textwidth}@{\extracolsep{\fill}}r}
-      \textit{\textbf{\small #1}} {\small (#2)} & \\
-      \multicolumn{2}{p{.9\textwidth}}{{\small #3}}
-    \end{tabular*}
+    \begin{tabularx}{.95\textwidth}[t]{L{.75}T}
+      \textit{\textbf{\small #1}} \ifthenelse{\equal{#2}{}}{}{{\small (#2)}} & \\
+      \multicolumn{2}{p{.9\textwidth}}{{\small\makecell{#3}}}
+    \end{tabularx}
     }%
 }
 
 \newcommand{\resumeProjectHeading}[3]{
     \item%
-    \begin{tabular*}{.95\textwidth}[t]{p{.7\textwidth}@{\extracolsep{\fill}}r}
+    \begin{tabularx}{.95\textwidth}[t]{L{.8}T}
         \textbf{#1} & {\small#3} \\
         \multicolumn{2}{p{.9\textwidth}}{\parbox{.9\textwidth}{{\vspace{2pt}\small #2}}}
-      \end{tabular*}
+    \end{tabularx}
 }
 
 \newcommand{\resumePublicationHeading}[4]{
-% \vspace{-1pt}
     \item%
-    \begin{tabular*}{.95\textwidth}[t]{p{.85\textwidth}@{\extracolsep{\fill}}r}
+    \begin{tabularx}{.95\textwidth}[t]{L{.8}T}
       \textbf{#1} & {\small#3} \\
       \textit{#2} & \\
-      {\footnotesize #4} &
-    \end{tabular*}
+      {\footnotesize \makecell{#4}} &
+    \end{tabularx}
 }
 
 \newcommand{\resumeLanguageEntry}[2]{
     \item%
-    \begin{tabular*}{.95\textwidth}[t]{p{.6\textwidth}@{\extracolsep{\fill}}r}
-    \textbf{#1} & {#2}
+    \begin{tabular*}{.95\textwidth}[t]{ll}
+    \textbf{#1}: & \: {#2}
     \end{tabular*}
 }
 %\newcommand{\resumeSubItem}[2]{
@@ -143,10 +148,10 @@
 %\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
 
 \renewcommand{\labelitemii}{$\circ$}
-\setlist[itemize]{itemsep=.2mm}
-\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*]}
+\setlist[itemize]{itemsep=.01em,parsep=.15em}
+\newcommand{\resumeSubHeadingListStart}{\vspace{-.2em}\begin{itemize}[leftmargin=*]}
 \newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
-\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=*]} %
+\newcommand{\resumeItemListStart}{\vspace{-.2em}\begin{itemize}[leftmargin=*]} %
 \newcommand{\resumeItemListEnd}{\end{itemize}}
 
 % --------- Start of resume --------
@@ -223,12 +228,18 @@ Here you can write a brief introduction about yourself, your career goals, and y
 \resumeSubHeadingListEnd
 
 \section{Languages}
-\resumeSubHeadingListStart
-\resumeLanguageEntry{Italian}{\textbf{Mother tongue}}
-\resumeLanguageEntry{English}{Cambridge Level 3 Certificate --- \textbf{C2}}
-\resumeLanguageEntry{French}{\textbf{A2}}
-\resumeLanguageEntry{Spanish}{\textbf{A2}}
-\resumeSubHeadingListEnd
+\begin{minipage}{.5\textwidth}%
+    \resumeSubHeadingListStart
+    \resumeLanguageEntry{Italian}{\textbf{Mother tongue}}
+    \resumeLanguageEntry{English}{Cambridge Level 3 Certificate --- \textbf{C2}}
+    \resumeSubHeadingListEnd
+\end{minipage}%
+\begin{minipage}{.4\textwidth}%
+    \resumeSubHeadingListStart
+    \resumeLanguageEntry{French}{\textbf{A2}}
+    \resumeLanguageEntry{Spanish}{\textbf{A2}}
+    \resumeSubHeadingListEnd
+\end{minipage}
 
 %\clearpage
 
